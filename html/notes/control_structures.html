@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>If-Else and While Control Structures &mdash; AlgoVision 0.1.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="For Loops and Hard Integers" href="integers_and_for.html" />
+    <link rel="prev" title="Basic Instructions" href="basics.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> AlgoVision
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basics.html">Basic Instructions</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">If-Else and While Control Structures</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#conditions">Conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#if"><code class="docutils literal notranslate"><span class="pre">If</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#while"><code class="docutils literal notranslate"><span class="pre">While</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="integers_and_for.html">For Loops and Hard Integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bubble_sort_example.html">Example: Bubble Sort</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/core.html">AlgoVision Core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/instructions.html">Instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/control_structures.html">Control Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/conditions.html">Conditions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/functions.html">Functions</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">AlgoVision</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>If-Else and While Control Structures</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/notes/control_structures.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="if-else-and-while-control-structures">
+<h1>If-Else and While Control Structures<a class="headerlink" href="#if-else-and-while-control-structures" title="Permalink to this headline"></a></h1>
+<div class="section" id="conditions">
+<h2>Conditions<a class="headerlink" href="#conditions" title="Permalink to this headline"></a></h2>
+<p>To define an <code class="docutils literal notranslate"><span class="pre">If</span></code> or <code class="docutils literal notranslate"><span class="pre">While</span></code> statement, it is necessary to define the respective Condition.
+This may be done via conditions such as <code class="docutils literal notranslate"><span class="pre">Eq</span></code> (equal), <code class="docutils literal notranslate"><span class="pre">IsTrue</span></code>, <code class="docutils literal notranslate"><span class="pre">LT</span></code> (less than), and <code class="docutils literal notranslate"><span class="pre">GT</span></code> (greater than).
+See the API for a list of all conditions: <a class="reference internal" href="../api/conditions.html#conditions"><span class="std std-ref">Conditions</span></a>.
+In general, the tensors used for the condition, should be of shape <code class="docutils literal notranslate"><span class="pre">[B,</span> <span class="pre">]</span></code>, i.e., apart from batching be scalars, as the probability of execution should be a scalar value.</p>
+</div>
+<div class="section" id="if">
+<h2><code class="docutils literal notranslate"><span class="pre">If</span></code><a class="headerlink" href="#if" title="Permalink to this headline"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">If</span></code> module implements If-Else statements and may be used in the following way:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Algorithm</span><span class="p">(</span>
+    <span class="c1"># ...</span>
+    <span class="n">If</span><span class="p">(</span><span class="n">LT</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">b</span><span class="p">:</span> <span class="n">b</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span>  <span class="c1"># corresponds to: if a &lt; b + 1:</span>
+        <span class="n">if_true</span><span class="o">=</span><span class="p">[</span>
+            <span class="c1"># ... instructions and control structures ...</span>
+        <span class="p">],</span>
+        <span class="n">if_false</span><span class="o">=</span><span class="p">[</span>
+            <span class="c1"># ... instructions and control structures ...</span>
+        <span class="p">],</span>
+    <span class="p">),</span>
+    <span class="c1"># ...</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">if_true</span></code> or <code class="docutils literal notranslate"><span class="pre">if_false</span></code> may also be omitted here.</p>
+</div>
+<div class="section" id="while">
+<h2><code class="docutils literal notranslate"><span class="pre">While</span></code><a class="headerlink" href="#while" title="Permalink to this headline"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Algorithm</span><span class="p">(</span>
+    <span class="c1"># ...</span>
+    <span class="n">While</span><span class="p">(</span><span class="n">LT</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">b</span><span class="p">:</span> <span class="n">b</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span>  <span class="c1"># corresponds to: while a &lt; b + 1:</span>
+        <span class="c1"># ... instructions and control structures ...</span>
+    <span class="p">),</span>
+    <span class="c1"># ...</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>While blocks consider two additional hyperparameters: <code class="docutils literal notranslate"><span class="pre">max_iter</span></code> and <code class="docutils literal notranslate"><span class="pre">epsilon</span></code>, which corresponds to the maximum number of iterations and the minimum probability for continuing the loop.
+These hyperparameters (similar to <code class="docutils literal notranslate"><span class="pre">beta</span></code>) can be set locally for each instance or globally as an argument for the algorithm.
+Note that if a global and a local value are given, the local value is preferred.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="basics.html" class="btn btn-neutral float-left" title="Basic Instructions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="integers_and_for.html" class="btn btn-neutral float-right" title="For Loops and Hard Integers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2021, Felix Petersen.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

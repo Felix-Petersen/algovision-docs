@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Basic Instructions &mdash; AlgoVision 0.1.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="If-Else and While Control Structures" href="control_structures.html" />
+    <link rel="prev" title="Installation" href="installation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> AlgoVision
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Basic Instructions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#input-and-output"><code class="docutils literal notranslate"><span class="pre">Input</span></code> and <code class="docutils literal notranslate"><span class="pre">Output</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#var-and-variable"><code class="docutils literal notranslate"><span class="pre">Var</span></code> and <code class="docutils literal notranslate"><span class="pre">Variable</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lambda-expressions">λ Lambda Expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#let"><code class="docutils literal notranslate"><span class="pre">Let</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="control_structures.html">If-Else and While Control Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="integers_and_for.html">For Loops and Hard Integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bubble_sort_example.html">Example: Bubble Sort</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/core.html">AlgoVision Core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/instructions.html">Instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/control_structures.html">Control Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/conditions.html">Conditions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/functions.html">Functions</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">AlgoVision</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Basic Instructions</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/notes/basics.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="basic-instructions">
+<h1>Basic Instructions<a class="headerlink" href="#basic-instructions" title="Permalink to this headline"></a></h1>
+<p>At the core of our framework lies the <code class="docutils literal notranslate"><span class="pre">Algorithm</span></code> class, which is a <code class="docutils literal notranslate"><span class="pre">torch.nn.Module</span></code>.
+To implement an algorithm, follow the following structure:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">algo</span> <span class="o">=</span> <span class="n">Algorithm</span><span class="p">(</span>
+    <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">),</span>
+    <span class="c1"># ... more input arguments ...</span>
+    <span class="n">Var</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="mf">0.</span><span class="p">)),</span>
+    <span class="c1"># ... more variables ...</span>
+    <span class="n">Let</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">),</span>  <span class="c1"># corresponds to y = x</span>
+    <span class="c1"># ... more instructions ...</span>
+    <span class="n">Output</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">),</span>
+    <span class="c1"># ... more return values ...</span>
+    <span class="c1"># optionally define hyperparameters like beta</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>and to execute simply run <code class="docutils literal notranslate"><span class="pre">algo(x)</span></code> where <code class="docutils literal notranslate"><span class="pre">x</span></code> is a respective PyTorch tensor of shape <code class="docutils literal notranslate"><span class="pre">[B,</span> <span class="pre">]</span></code> where <code class="docutils literal notranslate"><span class="pre">B</span></code> is the batch size.</p>
+<p>In the following, we go into detail for each of the module types.</p>
+<div class="section" id="input-and-output">
+<h2><code class="docutils literal notranslate"><span class="pre">Input</span></code> and <code class="docutils literal notranslate"><span class="pre">Output</span></code><a class="headerlink" href="#input-and-output" title="Permalink to this headline"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Input</span></code> and <code class="docutils literal notranslate"><span class="pre">Output</span></code> specify which variables are the inputs / outputs of the algorithm.
+All returned variables (as specified via <code class="docutils literal notranslate"><span class="pre">Output</span></code>), have to be either input variables or declared via <code class="docutils literal notranslate"><span class="pre">Variable</span></code>.</p>
+</div>
+<div class="section" id="var-and-variable">
+<h2><code class="docutils literal notranslate"><span class="pre">Var</span></code> and <code class="docutils literal notranslate"><span class="pre">Variable</span></code><a class="headerlink" href="#var-and-variable" title="Permalink to this headline"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Variable</span></code> declares and initialized a variable. <code class="docutils literal notranslate"><span class="pre">Var</span></code> is an alias for <code class="docutils literal notranslate"><span class="pre">Variable</span></code>.
+Note that variables that are inputs do not have to be / cannot additionally be initialized by <code class="docutils literal notranslate"><span class="pre">Var</span></code>.
+Also, note that if it is initialized with a tensor, a batch dimension will be added and the tensor will be repeated during execution of the algorithm.
+For example, if the shape was <code class="docutils literal notranslate"><span class="pre">[4,</span> <span class="pre">]</span></code>, it will be changed to <code class="docutils literal notranslate"><span class="pre">[B,</span> <span class="pre">4,</span> <span class="pre">]</span></code> where <code class="docutils literal notranslate"><span class="pre">B</span></code> is the batch size.</p>
+</div>
+<div class="section" id="lambda-expressions">
+<h2>λ Lambda Expressions<a class="headerlink" href="#lambda-expressions" title="Permalink to this headline"></a></h2>
+<p>Key to defining an algorithm are <code class="docutils literal notranslate"><span class="pre">lambda</span></code> expressions (see <a class="reference external" href="https://www.w3schools.com/python/python_lambda.asp">here</a> for a reference).
+They allow defining anonymous functions and therefore allow expressing computations in-place.
+In most cases in <code class="docutils literal notranslate"><span class="pre">algovision</span></code>, it is possible to write a value in terms of a lambda expressions.
+The name of the used variable will be inferred from the signature of the expression.
+For example, <code class="docutils literal notranslate"><span class="pre">lambda</span> <span class="pre">x:</span> <span class="pre">x**2</span></code> will take the variable named <code class="docutils literal notranslate"><span class="pre">x</span></code> and return the square of it at the location where the expression is written.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Let('z',</span> <span class="pre">lambda</span> <span class="pre">x,</span> <span class="pre">y:</span> <span class="pre">x**2</span> <span class="pre">+</span> <span class="pre">y)</span></code> corresponds to the regular line of code <code class="docutils literal notranslate"><span class="pre">z</span> <span class="pre">=</span> <span class="pre">x**2</span> <span class="pre">+</span> <span class="pre">y</span></code>.
+This also allows inserting complex external functions including neural networks as part of the lambda expression.
+Assuming <code class="docutils literal notranslate"><span class="pre">net</span></code> is a neural networks, one can write <code class="docutils literal notranslate"><span class="pre">Let('y',</span> <span class="pre">lambda</span> <span class="pre">x:</span> <span class="pre">net(x))</span></code> (corresponding to <code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">=</span> <span class="pre">net(x)</span></code>).</p>
+</div>
+<div class="section" id="let">
+<h2><code class="docutils literal notranslate"><span class="pre">Let</span></code><a class="headerlink" href="#let" title="Permalink to this headline"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Let</span></code> is one of the core instructions as it sets the variable given as the left argument to the value of the right expression.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Let</span></code> is a very flexible instruction.
+In its most simple form <code class="docutils literal notranslate"><span class="pre">Let</span></code> obtains two arguments, a string naming the variable where the result is written, and the value that may be expressed via a <code class="docutils literal notranslate"><span class="pre">lambda</span></code> expression.</p>
+<p>If the lambda expression returns multiple values, e.g., because a complex function is called and has two return values, the left argument can be a list of strings.
+That is, <code class="docutils literal notranslate"><span class="pre">Let(['a',</span> <span class="pre">'b'],</span> <span class="pre">lamba</span> <span class="pre">x,</span> <span class="pre">y:</span> <span class="pre">(x+y,</span> <span class="pre">x-y))</span></code> corresponds to <code class="docutils literal notranslate"><span class="pre">a,</span> <span class="pre">b</span> <span class="pre">=</span> <span class="pre">x+y,</span> <span class="pre">x-y</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Let</span></code> also supports indexing. This is denoted by an additional list argument after the left and/or the right argument.
+For example, <code class="docutils literal notranslate"><span class="pre">Let('a',</span> <span class="pre">'array',</span> <span class="pre">['i'])</span></code> corresponds to <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">=</span> <span class="pre">array[i]</span></code>, while <code class="docutils literal notranslate"><span class="pre">Let('array',</span> <span class="pre">['i'],</span> <span class="pre">'b')</span></code> corresponds to <code class="docutils literal notranslate"><span class="pre">array[i]</span> <span class="pre">=</span> <span class="pre">b</span></code>.
+<code class="docutils literal notranslate"><span class="pre">Let('array',</span> <span class="pre">['i'],</span> <span class="pre">'array',</span> <span class="pre">['j'])</span></code> corresponding to <code class="docutils literal notranslate"><span class="pre">array[i]</span> <span class="pre">=</span> <span class="pre">array[j]</span></code> is also supported.</p>
+<p>Note that indexing can also be expressed through <code class="docutils literal notranslate"><span class="pre">lambda</span></code> expressions.
+For example, <code class="docutils literal notranslate"><span class="pre">Let('a',</span> <span class="pre">'array',</span> <span class="pre">['i'])</span></code> is equivalent to <code class="docutils literal notranslate"><span class="pre">Let('a',</span> <span class="pre">lambda</span> <span class="pre">array,</span> <span class="pre">i:</span> <span class="pre">array[:,</span> <span class="pre">i])</span></code>. Note how in this case the batch dimension has to be explicitly taken into account (<code class="docutils literal notranslate"><span class="pre">[:,</span> <span class="pre">]</span></code>).
+Relaxed indexing on the right-hand side is only supported through <code class="docutils literal notranslate"><span class="pre">lambda</span></code> expressions due to its complexity.
+Relaxed indexing on the left-hand side is supported if exactly one probability weight tensor is in the list (e.g., <code class="docutils literal notranslate"><span class="pre">Let('array',</span> <span class="pre">[lambda</span> <span class="pre">x:</span> <span class="pre">get_weights(x)],</span> <span class="pre">'a')</span></code>).</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="installation.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="control_structures.html" class="btn btn-neutral float-right" title="If-Else and While Control Structures" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2021, Felix Petersen.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
